@@ -1,0 +1,9 @@
+version: "3.9"
+services:
+  app:
+    build: .
+    command: go run main.go
+    ports:
+      - "9090:9090"
+    volumes:
+      - .:/app

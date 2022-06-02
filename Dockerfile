@@ -10,4 +10,7 @@ RUN go mod tidy
 
 RUN go build -o binary
 
-ENTRYPOINT ["/app/binary"]
+EXPOSE 9090
+
+# ENTRYPOINT ["/app/binary"]
+CMD ["/app/binary"]
