@@ -1,12 +1,13 @@
-FROM golang:alpine as builder
+FROM golang:alpine
 
-WORKDIR /
+RUN apk update && apk add --no-cache git && apk --no-cache --update add build-base 
+
+WORKDIR /app
+
 COPY . .
+
 RUN go mod tidy
-RUN go build -o /app .
 
-FROM scratch
-COPY --from=builder /app /app
-EXPOSE 4000
+RUN go build -o binary
 
-ENTRYPOINT ["/app"]
+ENTRYPOINT ["/app/binary"]
